@@ -24,10 +24,8 @@ const Register = () => {
       setEmail(formData.email)
       setOtp(!otp)
       console.log('✅ Response:', res)
-      alert('Login successful!')
     } catch (error) {
       console.error('❌ Error:', error.response?.data || error.message)
-      alert('Login failed!')
     }
   }
 
@@ -87,7 +85,7 @@ const Register = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+                  className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition cursor-pointer duration-200"
                 >
                   Register
                 </button>
