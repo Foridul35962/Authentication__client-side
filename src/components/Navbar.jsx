@@ -1,8 +1,14 @@
-import React from 'react'
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-const navbar = () => {
+const navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate()
+  const handleLogOut = async ()=>{
+    const res = await axios.post('http://localhost:3000/api/auth/loggedOut',{},{
+      withCredentials: true
+    })
+    setIsLoggedIn(false)
+  }
   return (
     <div className="py-2 bg-gray-900 text-white px-2 sm:px-0">
       <div className="container mx-auto flex justify-between">
@@ -10,7 +16,14 @@ const navbar = () => {
           Authentication
         </div>
         <div className='flex gap-5 text-xl'>
-          <button className='bg-blue-700 p-1 rounded-lg cursor-pointer hover:bg-blue-800 hover:scale-105 active:bg-blue-900 transform transition-all duration-300 active:scale-100' onClick={()=>navigate('/login')}>LogIn</button>
+          {
+            isLoggedIn ? (
+              <button className='bg-blue-700 p-1 rounded-lg cursor-pointer hover:bg-blue-800 hover:scale-105 active:bg-blue-900 transform transition-all duration-300 active:scale-100' onClick={handleLogOut}>LogOut</button>
+            ) : (
+              <button className='bg-blue-700 p-1 rounded-lg cursor-pointer hover:bg-blue-800 hover:scale-105 active:bg-blue-900 transform transition-all duration-300 active:scale-100' onClick={()=>navigate('/login')}>LogIn</button>
+            )
+          }
+          
         </div>
       </div>
     </div>

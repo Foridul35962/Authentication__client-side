@@ -1,13 +1,31 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { CheckLogin } from '../store/store'
 
 const Login = () => {
   const navigate = useNavigate()
+  const { isLoggedIn, setIsLoggedIn } = useContext(CheckLogin)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // ekhane login API call korte paro
-    console.log("Login form submitted")
+    const formData = {
+      email: e.target.email.value,
+      password: e.target.password.value
+    }
+    try {
+      const res = await axios.post('http://localhost:3000/api/auth/loggedIn', formData, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      })
+      console.log(res.data);
+      setIsLoggedIn(true)
+      navigate('/')
+    } catch (error) {
+      console.log('login fetched failed: ', error)
+    }
   }
 
   return (
