@@ -9,16 +9,12 @@ const App = () => {
   useEffect(()=>{
     const checkLoginStatus = async()=>{
       try {
-        const res = await axios.get('http://localhost:3000/api/user/',{
+        await axios.get('http://localhost:3000/api/user/',{
           withCredentials: true
-        })
-        console.log(res);
-        
-        setIsLoggedIn(true)
+        }).then(()=>{
+          setIsLoggedIn(true)
+        }).catch(()=>{})
       } catch (error) {
-        setIsLoggedIn(false)
-        console.log('false',error);
-        
       }
     }
     checkLoginStatus()

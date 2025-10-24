@@ -20,7 +20,6 @@ const Login = () => {
         },
         withCredentials: true
       })
-      console.log(res.data);
       setIsLoggedIn(true)
       navigate('/')
     } catch (error) {

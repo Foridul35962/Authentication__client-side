@@ -6,6 +6,7 @@ import VerifyOtp from '../components/VerifyOtp'
 const Register = () => {
   const [email, setEmail] = useState('')
   const [otp, setOtp] = useState(true)
+  const [error, setError] = useState([])
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = {
@@ -16,16 +17,15 @@ const Register = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/register', formData, {
+      await axios.post('http://localhost:3000/api/auth/register', formData, {
         headers: {
           'Content-Type': 'application/json'
         }
       })
       setEmail(formData.email)
       setOtp(!otp)
-      console.log('✅ Response:', res)
-    } catch (error) {
-      console.error('❌ Error:', error.response?.data || error.message)
+    } catch (err) {
+      setError(err.response?.data?.error || 'Something went wrong')
     }
   }
 
@@ -40,6 +40,17 @@ const Register = () => {
           <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
             <div>
               <h2 className="text-2xl font-bold text-center mb-6 text-blue-600">Register</h2>
+              <div>
+                {error.length > 0 && (
+                  <div className="bg-red-50 p-2 rounded-md mt-2">
+                    <ul className="list-disc ml-4 text-red-600 text-sm">
+                      {error.map((item, idx) => (
+                        <li key={idx}>{item.msg}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor='email' className="block text-gray-700">Email</label>
