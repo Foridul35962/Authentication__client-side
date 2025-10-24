@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate()
   const handleLogOut = async ()=>{
-    const res = await axios.post('http://localhost:3000/api/auth/loggedOut',{},{
+    const res = await axios.post('/api/auth/loggedOut',{},{
       withCredentials: true
     })
     setIsLoggedIn(false)

@@ -1,8 +1,6 @@
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 
-const VerifyOtp = ({ email, setOtp }) => {
-  const navigate = useNavigate()
+const ResetPassOtpVerify = ({ email, setOtp }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = {
@@ -11,14 +9,12 @@ const VerifyOtp = ({ email, setOtp }) => {
     }
 
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/verifyEmail', formData, {
+      const res = await axios.post('/api/auth/reset-password-otp-check', formData, {
         headers:{
           'Content-Type': 'application/json'
         }
       })
-      console.log(res.data);
-      setOtp(true)
-      navigate('/login')
+      setOtp('resetPassword')
     } catch (error) {
       console.log('error: ',error);
     }
@@ -54,4 +50,4 @@ const VerifyOtp = ({ email, setOtp }) => {
   )
 }
 
-export default VerifyOtp
+export default ResetPassOtpVerify

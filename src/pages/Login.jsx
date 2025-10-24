@@ -14,7 +14,7 @@ const Login = () => {
       password: e.target.password.value
     }
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/loggedIn', formData, {
+      await axios.post('/api/auth/loggedIn', formData, {
         headers: {
           'Content-Type': 'application/json'
         },

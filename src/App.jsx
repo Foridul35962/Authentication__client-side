@@ -9,7 +9,7 @@ const App = () => {
   useEffect(()=>{
     const checkLoginStatus = async()=>{
       try {
-        await axios.get('http://localhost:3000/api/user/',{
+        await axios.get('/api/user/',{
           withCredentials: true
         }).then(()=>{
           setIsLoggedIn(true)
