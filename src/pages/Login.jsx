@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CheckLogin } from '../store/store'
 
@@ -7,6 +7,7 @@ const Login = () => {
   const navigate = useNavigate()
   const { isLoggedIn, setIsLoggedIn } = useContext(CheckLogin)
 
+  const [error, setError] = useState('')
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = {
@@ -22,8 +23,9 @@ const Login = () => {
       })
       setIsLoggedIn(true)
       navigate('/')
-    } catch (error) {
-      console.log('login fetched failed: ', error)
+    } catch (err) {
+      setError(err.response?.data?.message || 'Something went wrong')
+      e.target.password.value = ''
     }
   }
 
@@ -31,7 +33,7 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6 text-blue-600">Login</h2>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-gray-700">Email</label>
@@ -55,14 +57,23 @@ const Login = () => {
           </div>
 
           <p className="text-gray-500 text-sm mt-4">
-          Forget Password?{' '}
-          <span
-            className="text-blue-600 font-semibold cursor-pointer"
-            onClick={() => navigate('/reset-password')}
-          >
-            Reset Password
-          </span>
-        </p>
+            Forget Password?{' '}
+            <span
+              className="text-blue-600 font-semibold cursor-pointer"
+              onClick={() => navigate('/reset-password')}
+            >
+              Reset Password
+            </span>
+          </p>
+
+          <div>
+            {
+              error && 
+                <div className="bg-red-100 text-red-700 p-2 rounded-md text-sm">
+                  {error}
+                </div>
+            }
+          </div>
 
           <button
             type="submit"

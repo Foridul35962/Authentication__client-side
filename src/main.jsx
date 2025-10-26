@@ -7,6 +7,7 @@ import Register from './pages/Register.jsx'
 import Login from './pages/Login.jsx'
 import Error from './pages/Error.jsx'
 import ResetPasword from './pages/ResetPasword.jsx'
+import Deshboard from './components/Deshboard.jsx'
 
 const router= createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router= createBrowserRouter([
       {
         path: '/reset-password',
         element: <ResetPasword />
+      },
+      {
+        path: '/deshboard',
+        element: <Deshboard />
       }
     ]
   },

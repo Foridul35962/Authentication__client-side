@@ -16,6 +16,7 @@ const navbar = ({ isLoggedIn, setIsLoggedIn }) => {
           Authentication
         </div>
         <div className='flex gap-5 text-xl'>
+          <button className='bg-blue-700 p-1 rounded-lg cursor-pointer hover:bg-blue-800 hover:scale-105 active:bg-blue-900 transform transition-all duration-300 active:scale-100' onClick={()=>navigate('/deshboard')}>Deshboard</button>
           {
             isLoggedIn ? (
               <button className='bg-blue-700 p-1 rounded-lg cursor-pointer hover:bg-blue-800 hover:scale-105 active:bg-blue-900 transform transition-all duration-300 active:scale-100' onClick={handleLogOut}>LogOut</button>
