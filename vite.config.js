@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   server:{
     proxy:{
-      '/api': 'http://localhost:3000'
+      '/api': 'https://authentication-server-side.vercel.app/'
     }
   },
   plugins: [
