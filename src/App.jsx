@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import Navbar from './components/navbar'
+import Navbar from './components/Navbar'
 import { CheckLogin } from './store/store'
 import axios from 'axios'
 
