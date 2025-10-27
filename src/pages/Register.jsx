@@ -20,7 +20,7 @@ const Register = () => {
     }
 
     try {
-      await axios.post('https://authentication-server-side.vercel.app/api/auth/register', formData, {
+      await axios.post('/api/auth/register', formData, {
         headers: {
           'Content-Type': 'application/json'
         }

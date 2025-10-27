@@ -18,7 +18,7 @@ const Login = () => {
       password: e.target.password.value
     }
     try {
-      await axios.post('https://authentication-server-side.vercel.app/api/auth/loggedIn', formData, {
+      await axios.post('/api/auth/loggedIn', formData, {
         headers: {
           'Content-Type': 'application/json'
         },
@@ -27,8 +27,6 @@ const Login = () => {
       setIsLoggedIn(true)
       navigate('/')
     } catch (err) {
-      console.log(err);
-      
       setError(err.response?.data?.message || 'Something went wrong')
       e.target.password.value = ''
     }

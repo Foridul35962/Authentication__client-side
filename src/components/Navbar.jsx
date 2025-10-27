@@ -6,11 +6,9 @@ import { useNavigate } from 'react-router-dom'
 const navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate()
   const handleLogOut = async () => {
-    setLoading(true)
-    await axios.post('https://authentication-server-side.vercel.app/api/auth/loggedOut', {}, {
+    await axios.post('/api/auth/loggedOut', {}, {
       withCredentials: true
     })
-    setIsLoggedIn(false)
   }
   return (
     <div className="py-2 bg-gray-900 text-white px-2 sm:px-0">
