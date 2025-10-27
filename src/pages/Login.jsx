@@ -27,6 +27,8 @@ const Login = () => {
       setIsLoggedIn(true)
       navigate('/')
     } catch (err) {
+      console.log(err);
+      
       setError(err.response?.data?.message || 'Something went wrong')
       e.target.password.value = ''
     }
