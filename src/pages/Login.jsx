@@ -18,7 +18,7 @@ const Login = () => {
       password: e.target.password.value
     }
     try {
-      await axios.post('/api/auth/loggedIn', formData, {
+      await axios.post('https://authentication-server-side.vercel.app/api/auth/loggedIn', formData, {
         headers: {
           'Content-Type': 'application/json'
         },

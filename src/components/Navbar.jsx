@@ -7,7 +7,7 @@ const navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate()
   const handleLogOut = async () => {
     setLoading(true)
-    await axios.post('/api/auth/loggedOut', {}, {
+    await axios.post('https://authentication-server-side.vercel.app/api/auth/loggedOut', {}, {
       withCredentials: true
     })
     setIsLoggedIn(false)

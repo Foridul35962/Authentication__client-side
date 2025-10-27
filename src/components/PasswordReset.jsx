@@ -16,7 +16,7 @@ const PasswordReset = ({ email }) => {
       confirm_password: e.target.confirm_password.value
     }
     try {
-      await axios.post('/api/auth/reset-password', formData, {
+      await axios.post('https://authentication-server-side.vercel.app/api/auth/reset-password', formData, {
         headers: {
           'Content-Type': 'application/json'
         },

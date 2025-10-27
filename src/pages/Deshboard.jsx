@@ -8,7 +8,7 @@ const Deshboard = () => {
     useEffect(()=>{
         const getUser = async()=>{
             try {
-                const res = await axios.get('/api/user/',{withCredentials: true})
+                const res = await axios.get('https://authentication-server-side.vercel.app/api/user/',{withCredentials: true})
                 const user = res.data
                 setFindUser(user.data)
                 if (!user.success) {

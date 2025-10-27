@@ -16,7 +16,7 @@ const VerifyOtp = ({ email, setOtp }) => {
     }
 
     try {
-      await axios.post('http://localhost:3000/api/auth/verifyEmail', formData, {
+      await axios.post('https://authentication-server-side.vercel.app/api/auth/verifyEmail', formData, {
         headers: {
           'Content-Type': 'application/json'
         }

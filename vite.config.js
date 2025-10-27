@@ -4,11 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  server:{
-    proxy:{
-      '/api': 'https://authentication-server-side.vercel.app/'
-    }
-  },
   plugins: [
     tailwindcss(),
     react()

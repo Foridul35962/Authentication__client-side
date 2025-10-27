@@ -14,7 +14,7 @@ const ResetPassOtpVerify = ({ email, setOtp }) => {
     }
 
     try {
-      const res = await axios.post('/api/auth/reset-password-otp-check', formData, {
+      const res = await axios.post('https://authentication-server-side.vercel.app/api/auth/reset-password-otp-check', formData, {
         headers: {
           'Content-Type': 'application/json'
         }
