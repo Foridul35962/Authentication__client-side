@@ -8,14 +8,13 @@ const Deshboard = () => {
     useEffect(()=>{
         const getUser = async()=>{
             try {
-                const res = await axios.get('/api/user/')
+                const res = await axios.get('/api/user/',{withCredentials: true})
                 const user = res.data
                 setFindUser(user.data)
                 if (!user.success) {
                     navigate('/login')
                 }
             } catch (error) {
-                console.log(error.response.data)
                 navigate('/login')
             }
         }

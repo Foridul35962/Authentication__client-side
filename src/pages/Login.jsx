@@ -2,14 +2,17 @@ import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CheckLogin } from '../store/store'
+import { AiOutlineReload } from 'react-icons/ai';
 
 const Login = () => {
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
   const { isLoggedIn, setIsLoggedIn } = useContext(CheckLogin)
 
   const [error, setError] = useState('')
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     const formData = {
       email: e.target.email.value,
       password: e.target.password.value
@@ -27,6 +30,7 @@ const Login = () => {
       setError(err.response?.data?.message || 'Something went wrong')
       e.target.password.value = ''
     }
+    setLoading(false)
   }
 
   return (
@@ -68,18 +72,20 @@ const Login = () => {
 
           <div>
             {
-              error && 
-                <div className="bg-red-100 text-red-700 p-2 rounded-md text-sm">
-                  {error}
-                </div>
+              error &&
+              <div className="bg-red-100 text-red-700 p-2 rounded-md text-sm">
+                {error}
+              </div>
             }
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+          <button type="submit" className={`w-full py-2 rounded-lg transition duration-200 ${loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
           >
-            Login
+            {loading ? (
+              <AiOutlineReload className="animate-spin w-full text-center text-white text-xl" />
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
 

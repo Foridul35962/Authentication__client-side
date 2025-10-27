@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import VerifyOtp from '../components/VerifyOtp'
+import { AiOutlineReload } from 'react-icons/ai'
 
 const Register = () => {
+  const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [otp, setOtp] = useState(true)
   const [error, setError] = useState([])
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     const formData = {
       email: e.target.email.value,
       userName: e.target.userName.value,
@@ -26,7 +29,10 @@ const Register = () => {
       setOtp(!otp)
     } catch (err) {
       setError(err.response?.data?.error || 'Something went wrong')
+      e.target.password.value = ''
+      e.target.confirm_password.value = ''
     }
+    setLoading(false)
   }
 
 
@@ -96,9 +102,13 @@ const Register = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition cursor-pointer duration-200"
+                  className={`w-full py-2 rounded-lg transition duration-200 ${loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
                 >
-                  Register
+                  {loading ? (
+                    <AiOutlineReload className="animate-spin w-full text-center text-white text-xl" />
+                  ) : (
+                    "Register"
+                  )}
                 </button>
               </form>
 
